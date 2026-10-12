@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#08070b"/>
+  <meta name="description" content="X-Design — Creative Design Solutions. Graphic design, logos, branding, posters and more."/>
+  <title>X-Design | Creative Design Solutions</title>
+  <style>
+    :root{
+      --bg:#08070b;
+      --panel:#121016;
+      --panel2:#1a1520;
+      --purple:#ba35df;
+      --purple2:#87359b;
+      --text:#fff;
+      --muted:#aaa3ae;
+      --line:#302537;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit}
+    button{cursor:pointer}
+    .wrap{max-width:1200px;margin:auto;padding:0 26px}
+    .top{position:sticky;top:0;z-index:20;background:#09070bea;border-bottom:1px solid #2b1c31;backdrop-filter:blur(14px)}
+    .topinner{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+    .brand{display:flex;align-items:center;gap:12px;font-size:23px;font-weight:900;letter-spacing:-1px}
+    .brand b{color:var(--purple)}
+    .nav{display:flex;gap:26px;align-items:center}
+    .nav a{font-size:13px;font-weight:700;color:#d8d1db;transition:color 0.2s}
+    .nav a:hover{color:var(--purple)}
+    .outline{border:1px solid var(--purple);border-radius:6px;padding:12px 17px;font-size:12px;font-weight:800;transition:all 0.2s}
+    .menu{display:none}
+    .hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:620px;gap:20px}
+    .hello{font-size:23px}
+    .hero h1{font-size:clamp(48px,6.3vw,88px);line-height:.97;letter-spacing:-.065em;margin:18px 0 12px}
+    .hero h1 span{color:var(--purple)}
+    .sub{letter-spacing:.34em;font-size:clamp(11px,1.4vw,17px);font-weight:800}
+    .desc{color:#c5bdc8;line-height:1.85;max-width:490px;font-size:16px;margin:26px 0}
+    .actions{display:flex;gap:13px;flex-wrap:wrap}
+    .btn{display:inline-block;border:1px solid #69536e;background:transparent;padding:15px 23px;border-radius:5px;font-weight:800;font-size:13px;transition:all 0.2s}
+    .btn.primary{background:linear-gradient(125deg,#c83af1,#9229b7);border-color:transparent}
+    .btn:hover,.outline:hover{transform:translateY(-2px);box-shadow:0 5px 24px #ac36ce45}
+    .social{margin-top:35px;font-size:12px;letter-spacing:.1em;color:#b9aebc}
+    .social a{display:inline-grid;place-items:center;background:#221529;border-radius:50%;height:35px;width:35px;margin-left:10px;font-size:15px}
+    .hero-visual{height:555px;position:relative;display:flex;align-items:end;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#6c188955,transparent 64%)}
+    .hero-visual:before{content:'X';position:absolute;font-weight:900;font-size:490px;line-height:1;color:#6e2284;opacity:.55;top:-20px;right:-30px;transform:skew(-12deg)}
+    .hero-visual img{position:relative;z-index:2;width:86%;height:91%;object-fit:cover;object-position:50% 13%;border-radius:45% 45% 0 0;mask-image:linear-gradient(#000 77%,transparent 100%)}
+    .badge{position:absolute;right:3%;top:25%;z-index:4;background:#1a1123ee;border:1px solid #8b34a3;border-radius:10px;padding:17px;font-size:12px;box-shadow:0 0 30px #8b34a344}
+    .badge strong{font-size:30px;display:block}
+    .section{padding:78px 0;border-top:1px solid #211b25}
+    .label{color:var(--purple);font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+    .section h2{font-size:clamp(30px,4vw,44px);letter-spacing:-.045em;margin:10px 0 20px}
+    .about-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:70px}
+    .about-grid p{color:var(--muted);line-height:1.9}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .info,.service{background:linear-gradient(135deg,#19151b,#100f13);border:1px solid #2b252f;border-radius:8px;padding:22px}
+    .info{display:flex;gap:14px;align-items:center}
+    .icon{display:grid;place-items:center;width:43px;height:43px;flex:none;border-radius:9px;background:#36163e;color:#d648f6;font-size:21px}
+    .info small{display:block;color:var(--muted);margin-bottom:7px}
+    .info strong{font-size:13px;overflow-wrap:anywhere}
+    .center{text-align:center}
+    .services{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:30px}
+    .service{min-height:180px;padding:19px}
+    .service .icon{margin-bottom:18px}
+    .service h3{font-size:15px;margin:0 0 10px}
+    .service p{font-size:12px;color:var(--muted);line-height:1.65;margin:0}
+    .portfolio-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .project{padding:0;background:#151219;color:white;border:1px solid #302535;text-align:left;border-radius:9px;overflow:hidden;transition:.25s;cursor:pointer}
+    .project:hover{transform:translateY(-5px);border-color:var(--purple)}
+    .project-img{display:block;height:215px;background:#221c26;overflow:hidden}
+    .project-img img{width:100%;height:100%;object-fit:contain;transition:transform .3s}
+    .project:hover img{transform:scale(1.04)}
+    .project-info{display:flex;justify-content:space-between;align-items:center;padding:17px}
+    .project-info strong{display:block;font-size:14px;margin-bottom:7px}
+    .project-info small{color:var(--muted);font-size:11px}
+    .arrow{color:var(--purple);font-size:23px}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+    .contact-grid p{color:var(--muted);line-height:1.8}
+    .contact-form{display:grid;gap:13px}
+    .contact-form input,.contact-form textarea{width:100%;padding:16px;border-radius:5px;border:1px solid #352d38;background:#1b181e;color:white}
+    .contact-form textarea{min-height:135px;resize:vertical}
+    .footer{border-top:1px solid #2a202d;padding:30px 0;color:#a79aab;font-size:13px}
+    .footer .wrap{display:flex;justify-content:space-between;gap:20px}
+    
+    .category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:30px}
+    .category-card{display:block;width:100%;padding:0;background:#151019;color:white;border:1px solid #38233f;border-radius:15px;overflow:hidden;text-align:left;transition:transform .25s,border-color .25s,box-shadow .25s}
+    .category-card:hover,.category-card:focus-visible{transform:translateY(-6px);border-color:#bc38df;box-shadow:0 12px 40px #b434db28}
+    .category-cover{height:235px;background:radial-gradient(circle at center,#34143e,#120e16);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .category-cover img{width:100%;height:100%;object-fit:contain;transition:transform .3s}
+    .category-card:hover img{transform:scale(1.05)}
+    .category-meta{padding:20px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .category-meta strong{font-size:18px;display:block;margin-bottom:8px}
+    .category-meta small{color:#b9a8bd}
+    .category-arrow{color:#cf45f0;font-size:27px}
+    .category-view[hidden]{display:none!important}
+    .category-view{margin-top:28px}
+    .category-view h3{font-size:32px;margin:22px 0 4px}
+    .back-category{background:#2b1832;color:white;border:1px solid #a342b9;border-radius:7px;padding:12px 18px}
+    .category-view .gallery{margin-top:22px}
+
+    .modal{position:fixed;inset:0;background:#000e;z-index:100;display:none;align-items:center;justify-content:center;padding:60px 18px 25px}
+    .modal.show{display:flex}
+    .modal img{max-width:95vw;max-height:85vh;object-fit:contain}
+    .close{position:absolute;top:14px;right:25px;background:#2a1930;color:white;border:1px solid #8d3aa1;border-radius:50%;width:43px;height:43px;font-size:27px}
+    .modal-caption{position:absolute;bottom:15px;font-size:14px;color:white}
+    
+    @media(max-width:950px){
+      .services{grid-template-columns:repeat(3,1fr)}
+      .nav{gap:12px}
+    }
+    @media(max-width:700px){
+      .menu{display:block;background:transparent;color:white;border:1px solid #56365e;padding:8px 11px}
+      .nav{display:none;position:absolute;top:68px;left:0;right:0;background:#100c13;flex-direction:column;align-items:stretch;padding:20px 28px}
+      .nav.open{display:flex}
+      .top .outline{display:none}
+      .hero{grid-template-columns:1fr;min-height:unset;padding-top:55px}
+      .hero-visual{height:410px}
+      .about-grid,.contact-grid{grid-template-columns:1fr;gap:25px}
+      .services{grid-template-columns:repeat(2,1fr)}
+      .category-grid{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:430px){
+      .services,.gallery{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap topinner">
+    <a class="brand" href="#home">X-<b>DESIGN</b></a>
+    <button aria-label="Toggle menu" class="menu" id="menu">☰</button>
+    <nav class="nav" id="nav">
+      <a href="#home">HOME</a>
+      <a href="#about">ABOUT</a>
+      <a href="#services">SERVICES</a>
+      <a href="#portfolio">PORTFOLIO</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <a class="outline" href="#contact">LET'S TALK ↗</a>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section class="wrap hero" id="home">
+    <div>
+      <div class="hello">👋 Hello, I'm</div>
+      <h1>Muhammad<br/><span>Muzammal</span></h1>
+      <div class="sub">GRAPHIC DESIGNER · X-DESIGN</div>
+      <p class="desc">I'm Muhammad Muzammal, a graphic designer creating memorable logos, striking visuals and thoughtful brand experiences that help businesses stand out.</p>
+      <div class="actions">
+        <a class="btn primary" href="#portfolio">VIEW MY WORK →</a>
+        <a class="btn" href="#contact">LET'S WORK TOGETHER ↗</a>
+      </div>
+      <div class="social">
+        FIND ME ON <a aria-label="Email" href="mailto:kharalmuzammal60@gmail.com">✉</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="badge"><strong>✦</strong>Creative<br/>Design Solutions</div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <div>
+        <div class="label">ABOUT ME</div>
+        <h2>I'm a <span style="color:var(--purple)">Graphic Designer</span> who loves visual storytelling.</h2>
+        <p>I design clean, modern and professional visuals for businesses, brands and individuals. From logos and stationery to campaigns and social media, I bring ideas to life through purposeful design.</p>
+      </div>
+      <div class="info-grid">
+        <div class="info"><span class="icon">♟</span><div><small>Name</small><strong>Muhammad Muzammal</strong></div></div>
+        <div class="info"><span class="icon">✦</span><div><small>Brand</small><strong>X-Design</strong></div></div>
+        <div class="info"><span class="icon">✉</span><div><small>Email</small><strong>kharalmuzammal60@gmail.com</strong></div></div>
+        <div class="info"><span class="icon">◎</span><div><small>Location</small><strong>Pakistan</strong></div></div>
+        <div class="info"><span class="icon">◉</span><div><small>Availability</small><strong>Contact for projects</strong></div></div>
+        <div class="info"><span class="icon">➤</span><div><small>Work mode</small><strong>Freelance / Online</strong></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="center">
+        <div class="label">WHAT I DO</div>
+        <h2>My Services</h2>
+      </div>
+      <div class="services">
+        <div class="service"><div class="icon">✎</div><h3>Logo Design</h3><p>Unique, memorable logos tailored to your brand identity.</p></div>
+        <div class="service"><div class="icon">▧</div><h3>Social Media</h3><p>Eye-catching graphics for digital campaigns and posts.</p></div>
+        <div class="service"><div class="icon">▣</div><h3>Business Cards</h3><p>Professional visiting cards with a strong first impression.</p></div>
+        <div class="service"><div class="icon">▤</div><h3>Letterheads</h3><p>Clean and consistent business stationery designs.</p></div>
+        <div class="service"><div class="icon">◇</div><h3>Posters &amp; Flyers</h3><p>Bold promotional designs for events and brands.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="section" id="portfolio">
+    <div class="wrap">
+      <div class="portfolio-heading">
+        <div>
+          <div class="label">PORTFOLIO CATEGORIES</div>
+          <h2>Explore My Work</h2>
+        </div>
+      </div>
+      
+      <div class="category-grid" id="categoryGrid">
+        <button class="category-card" data-category="Logos" type="button">
+          <div class="category-meta">
+            <div><strong>Logos</strong><small>View projects</small></div>
+            <span class="category-arrow">↗</span>
+          </div>
+        </button>
+        <button class="category-card" data-category="Posters" type="button">
+          <div class="category-meta">
+            <div><strong>Posters &amp; Social Media</strong><small>View projects</small></div>
+            <span class="category-arrow">↗</span>
+          </div>
+        </button>
+        <button class="category-card" data-category="Branding" type="button">
+          <div class="category-meta">
+            <div><strong>Branding &amp; Stationery</strong><small>View projects</small></div>
+            <span class="category-arrow">↗</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="category-view" hidden id="categoryView">
+        <button class="back-category" id="backCategory" type="button">← Back to categories</button>
+        <h3 id="categoryTitle"></h3>
+        <div class="gallery" id="categoryGallery"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="label">GET IN TOUCH</div>
+        <h2>Let's build something remarkable.</h2>
+        <p>Have an upcoming design project or need a fresh look for your brand? Send over a message and let's discuss details.</p>
+      </div>
+      <form class="contact-form" action="mailto:kharalmuzammal60@gmail.com" method="POST" enctype="text/plain">
+        <input type="text" placeholder="Your Name" required/>
+        <input type="email" placeholder="Your Email" required/>
+        <textarea placeholder="Tell me about your project..." required></textarea>
+        <button type="submit" class="btn primary">SEND MESSAGE →</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>© 2026 Muhammad Muzammal · X-Design</div>
+    <div>Crafted for high performance</div>
+  </div>
+</footer>
+
+<!-- Lightbox Modal -->
+<div class="modal" id="modal">
+  <button class="close" id="modalClose">&times;</button>
+  <img id="modalImg" src="" alt="Portfolio preview"/>
+  <div class="modal-caption" id="modalCaption"></div>
+</div>
+
+<script>
+  // Mobile Nav Toggle
+  const menuBtn = document.getElementById('menu');
+  const nav = document.getElementById('nav');
+  menuBtn.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+
+  // Category & Modal Functionality
+  const categoryGrid = document.getElementById('categoryGrid');
+  const categoryView = document.getElementById('categoryView');
+  const categoryTitle = document.getElementById('categoryTitle');
+  const categoryGallery = document.getElementById('categoryGallery');
+  const backBtn = document.getElementById('backCategory');
+
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+  const modalCaption = document.getElementById('modalCaption');
+  const modalClose = document.getElementById('modalClose');
+
+  // Sample items to display when categories are clicked
+  const items = {
+    Logos: [
+      { name: "Brand Emblem", cat: "Logo Design" },
+      { name: "Minimalist Identity", cat: "Logo Design" },
+      { name: "Vector Mark", cat: "Logo Design" }
+    ],
+    Posters: [
+      { name: "Event Campaign", cat: "Posters" },
+      { name: "Digital Feed Poster", cat: "Social Media" }
+    ],
+    Branding: [
+      { name: "Corporate Visiting Card", cat: "Business Cards" },
+      { name: "Letterhead Design", cat: "Stationery" }
+    ]
+  };
+
+  document.querySelectorAll('.category-card').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.category;
+      categoryTitle.innerText = cat;
+      categoryGrid.style.display = 'none';
+      categoryView.removeAttribute('hidden');
+      
+      categoryGallery.innerHTML = (items[cat] || []).map(item => `
+        <div class="project">
+          <div class="project-info">
+            <div>
+              <strong>${item.name}</strong>
+              <small>${item.cat}</small>
+            </div>
+            <span class="arrow">↗</span>
+          </div>
+        </div>
+      `).join('');
+    });
+  });
+
+  backBtn.addEventListener('click', () => {
+    categoryView.setAttribute('hidden', '');
+    categoryGrid.style.display = 'grid';
+  });
+
+  modalClose.addEventListener('click', () => modal.classList.remove('show'));
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('show');
+  });
+</script>
+
+</body>
+</html>
